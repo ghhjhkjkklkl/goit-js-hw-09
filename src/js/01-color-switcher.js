@@ -20,7 +20,7 @@ function changeColor() {
 
 function stopTimer() {
     clearInterval(timer);
-     stopBtn.disabled = false;
+     startBtn.disabled = false;
 };
 
  
