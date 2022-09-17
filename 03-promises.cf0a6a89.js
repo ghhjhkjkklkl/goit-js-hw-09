@@ -1,0 +1,2 @@
+function e(e,o){const i=Math.random()>.3;setTimeout((()=>{if(i)return new Promise({position:e,delay:o});reject(`❌ Rejected promise ${e} in ${o}ms`)}),o)}document.querySelector(".form").addEventListener("submit",e),e(2,1500).then((({position:e,delay:o})=>{console.log(`✅ Fulfilled promise ${e} in ${o}ms`)})).catch((({position:e,delay:o})=>{console.log(`❌ Rejected promise ${e} in ${o}ms`)}));
+//# sourceMappingURL=03-promises.cf0a6a89.js.map
