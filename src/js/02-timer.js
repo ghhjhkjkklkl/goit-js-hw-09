@@ -5,6 +5,10 @@ import "flatpickr/dist/flatpickr.min.css";
 const startBtn = document.querySelector('[data-start]');
 const inputPicker = document.querySelector('#datetime-picker');
 
+let changeDate = null;
+let intervalTime = null;
+
+
 
 startBtn.disabled = true;
 startBtn.style.backgroundColor = 'pink';
@@ -49,32 +53,35 @@ const options = {
       window.alert('Please choose a date in the future');
       startBtn.disabled = true;
     } else {
-   
       startBtn.disabled = false;
-      const changeDate = selectedDates[0];
-      startBtn.addEventListener('click', () => {
-        if (selectedDates) {
-          return;
-        }
-         const intervalTime = setInterval(() => {
+      changeDate = selectedDates[0];
+    };
+    
+    startBtn.addEventListener('click', () => {
+          intervalTime = setInterval(() => {
           const currentTime = Date.now();
-          const deltaTime = changeDate - currentTime;
+           const deltaTime = changeDate - currentTime;
+           console.log(deltaTime);
           const time = convertMs(deltaTime);
           if (deltaTime < 0) {
             clearInterval(intervalTime);
             return;
           }
-          console.log(time);
-          startTimer(time);
+           console.log(time);
+           startTimer(time);
         }, 1000);
       });
     }
-  },
-};
-flatpickr(inputPicker, options);
+  }
+
+    flatpickr(inputPicker, options);
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
+
+
+
+
 function startTimer({ days, hours, minutes, seconds }) {
   refs.daysElement.textContent = `${days}`;
   refs.hoursElement.textContent = `${hours}`;

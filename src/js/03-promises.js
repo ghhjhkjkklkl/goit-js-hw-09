@@ -1,8 +1,26 @@
 
-const newPromise = document.querySelector('.form');
+const refs = {
+  createPromisesBtn: document.querySelector('[submit]'),
+  delayElement: document.querySelector('[delay]'),
+  stepElement: document.querySelector('[step]'),
+  amountElement: document.querySelector('[data-days]'),
+};
 
-newPromise.addEventListener('submit', createPromise);
 
+refs.createPromisesBtn.addEventListener('submit', handleSubmit);
+
+function handleSubmit(event) {
+  const delay = event.currentTarget.elements.delay;
+const step = event.currentTarget.elements.step;
+const amount =  event.currentTarget.elements.amount;
+
+
+for (let i = 0; i < amount; i += 1) {
+  createPromise(i += 1, delay);
+  delay += step;
+}
+
+}
 
 
 function createPromise(position, delay) {
@@ -25,10 +43,3 @@ createPromise(2, 1500)
     console.log(`❌ Rejected promise ${position} in ${delay}ms`);
   });
 
-// feedbackForm.addEventListener('submit', evt => {
-//     evt.preventDefault();
-//     const formData = new FormData(feedbackForm);
-//     formData.forEach((value, name) => console.log({value, name}));
-//     localStorage.removeItem(STOREGE_KEY);
-//     evt.currentTarget.reset();
-// });
